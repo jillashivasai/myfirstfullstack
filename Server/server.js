@@ -1,15 +1,13 @@
-var express = require('express');
-var app = express();
-const mysql = require('mysql2');
+const express = require('express');
+const app = express();
 const cors = require('cors');
-const connection = require('./db/connection');
 const router = require('./db/Routes/router');
 
 const port = 8080;
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors())
 
 // Define a route handler for the root URL
 app.get('/', (req, res) => {
@@ -22,7 +20,7 @@ app.use(router);
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).send('Something broke!');
+    res.status(500).send('Internal Server Error');
 });
 
 // Start server
